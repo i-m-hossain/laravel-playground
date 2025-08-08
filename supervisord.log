@@ -135,3 +135,28 @@
 2025-08-05 16:12:40,964 INFO success: laravel-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-08-05 16:12:40,964 INFO success: laravel-worker_01 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-08-05 16:12:40,964 INFO success: laravel-worker_02 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-08-06 04:51:53,935 WARN received SIGQUIT indicating exit request
+2025-08-06 04:51:53,935 INFO waiting for laravel-worker_00, laravel-worker_01, laravel-worker_02 to die
+2025-08-06 04:51:53,939 WARN stopped: laravel-worker_02 (terminated by SIGTERM)
+2025-08-06 04:51:53,939 WARN stopped: laravel-worker_00 (terminated by SIGTERM)
+2025-08-06 04:51:53,939 WARN stopped: laravel-worker_01 (terminated by SIGTERM)
+2025-08-08 04:43:34,329 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-08-08 04:43:34,340 INFO supervisord started with pid 1
+2025-08-08 04:43:35,345 INFO spawned: 'laravel-worker_00' with pid 7
+2025-08-08 04:43:35,350 INFO spawned: 'laravel-worker_01' with pid 8
+2025-08-08 04:43:35,357 INFO spawned: 'laravel-worker_02' with pid 9
+2025-08-08 04:43:35,365 INFO spawned: 'reverb' with pid 10
+2025-08-08 04:43:36,475 INFO success: laravel-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-08-08 04:43:36,476 INFO success: laravel-worker_01 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-08-08 04:43:36,476 INFO success: laravel-worker_02 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-08-08 04:43:36,476 INFO success: reverb entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-08-08 04:43:36,706 WARN exited: reverb (exit status 1; not expected)
+2025-08-08 04:43:37,711 INFO spawned: 'reverb' with pid 25
+2025-08-08 04:43:38,486 WARN exited: reverb (exit status 1; not expected)
+2025-08-08 04:43:39,492 INFO spawned: 'reverb' with pid 28
+2025-08-08 04:43:40,219 WARN exited: reverb (exit status 1; not expected)
+2025-08-08 04:43:42,226 INFO spawned: 'reverb' with pid 31
+2025-08-08 04:43:42,915 WARN exited: reverb (exit status 1; not expected)
+2025-08-08 04:43:45,924 INFO spawned: 'reverb' with pid 34
+2025-08-08 04:43:46,608 WARN exited: reverb (exit status 1; not expected)
+2025-08-08 04:43:47,610 INFO gave up: reverb entered FATAL state, too many start retries too quickly

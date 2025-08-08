@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     git \
+    libonig-dev \ 
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql zip \
+    && docker-php-ext-install gd pdo pdo_mysql zip mbstring exif pcntl bcmath \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Xdebug for development (not included in production)
