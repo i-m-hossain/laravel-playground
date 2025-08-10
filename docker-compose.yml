@@ -14,7 +14,7 @@ services:
       - php-fpm
     networks:
       - playground_network
-  
+
   php-fpm:
     build:
       context: .
@@ -33,9 +33,36 @@ services:
       - playground_network
     depends_on:
       - db
+      - redis
     command: >
         sh -c "./docker/php/startup.sh"
-
+  reverb:
+    build:
+        context: .
+        dockerfile: ./docker/reverb/Dockerfile
+    volumes:
+        - .:/var/www/html
+    depends_on:
+        - redis
+        - db
+        - php-fpm
+    environment:
+        - APP_ENV=production
+        - APP_DEBUG=false
+        - REVERB_APP_ID=${REVERB_APP_ID}
+        - REVERB_APP_KEY=${REVERB_APP_KEY}
+        - REVERB_APP_SECRET=${REVERB_APP_SECRET}
+        - REVERB_HOST=0.0.0.0
+        - REVERB_PORT=8080
+        - DB_HOST=${DB_HOST}
+        - DB_DATABASE=${DB_DATABASE}
+        - DB_USERNAME=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - REDIS_HOST=${REDIS_HOST}
+    ports:
+        - "8081:8080"
+    networks:
+        - playground_network
   db:
     image: mysql:5.7
     ports:
@@ -47,39 +74,19 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
-   
+
     networks:
       - playground_network
 
   redis:
     image: redis:alpine
-    container_name: redis
     ports:
       - "6380:6379"
     networks:
       - playground_network
 
-  queue-worker:
-    build:
-      context: .
-      dockerfile: ./docker/supervisor/Dockerfile
-    volumes:
-      - .:/var/www/html
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - QUEUE_CONNECTION=${QUEUE_CONNECTION}
-      - DB_HOST=${DB_HOST}
-      - DB_DATABASE=${DB_DATABASE}
-      - DB_USERNAME=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-    depends_on:
-      - redis
-      - php-fpm
-    networks:
-      - playground_network
-    command: /usr/bin/supervisord -c /etc/supervisord.conf
-   
+
+
 volumes:
   db_data:
 
